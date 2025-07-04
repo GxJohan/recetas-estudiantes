@@ -3,11 +3,13 @@ import { Link } from 'react-router-dom';
 import type { Recipe } from '../types/Recipe';
 import { useRecipes } from '../hooks/useRecipes';
 
+
 interface RecipeCardProps {
   recipe: Recipe;
+  tiempoCoccion?: number; 
 }
 
-const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
+const RecipeCard: React.FC<RecipeCardProps> = ({ recipe, tiempoCoccion }) => {
   const { addToFavoritos, removeFromFavoritos, isFavorito } = useRecipes();
 
   const handleFavoritoClick = (e: React.MouseEvent) => {
@@ -55,6 +57,9 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
         
         <div className="recipe-meta">
           <span className="recipe-time">⏱️ {recipe.tiempo} min</span>
+          {typeof tiempoCoccion === 'number' && (
+            <span className="recipe-cooktime">🍳 {tiempoCoccion} min cocción</span>
+          )}
           <span className="recipe-difficulty">
             {getDificultadEmoji(recipe.dificultad)} {recipe.dificultad}
           </span>
@@ -70,8 +75,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
             {'⭐'.repeat(Math.floor(recipe.valoracion))}
           </span>
           <span className="rating-number">{recipe.valoracion}</span>
-        </div>
-        
+        </div>        
         <Link to={`/receta/${recipe.id}`} className="recipe-link">
           Ver Receta Completa
         </Link>
