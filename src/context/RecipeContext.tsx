@@ -1,4 +1,3 @@
-/* eslint-disable react-refresh/only-export-components */
 import React, { createContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
 import type { Recipe } from '../types/Recipe';
@@ -23,7 +22,7 @@ export const RecipeProvider: React.FC<RecipeProviderProps> = ({ children }) => {
   const [recetas, setRecetas] = useState<Recipe[]>(recetasData.recetas as Recipe[]);
   const [favoritos, setFavoritos] = useState<number[]>([]);
 
-  // useEffect para cargar favoritos del localStorage
+  // Cargar favoritos desde localStorage al iniciar
   useEffect(() => {
     const favoritosGuardados = localStorage.getItem('favoritos');
     if (favoritosGuardados) {
@@ -31,13 +30,13 @@ export const RecipeProvider: React.FC<RecipeProviderProps> = ({ children }) => {
     }
   }, []);
 
-  // useEffect para guardar favoritos en localStorage
+  // Guardar favoritos cada vez que cambian
   useEffect(() => {
     localStorage.setItem('favoritos', JSON.stringify(favoritos));
   }, [favoritos]);
 
   const addToFavoritos = (id: number) => {
-    setFavoritos(prev => [...prev, id]);
+    setFavoritos(prev => (prev.includes(id) ? prev : [...prev, id]));
   };
 
   const removeFromFavoritos = (id: number) => {
@@ -49,15 +48,15 @@ export const RecipeProvider: React.FC<RecipeProviderProps> = ({ children }) => {
   };
 
   const addReceta = (nuevaReceta: Omit<Recipe, 'id'>) => {
-    const newId = Math.max(...recetas.map(r => r.id)) + 1;
+    const newId = recetas.length > 0 ? Math.max(...recetas.map(r => r.id)) + 1 : 1;
     const receta: Recipe = {
       ...nuevaReceta,
-      id: newId
+      id: newId,
     };
     setRecetas(prev => [...prev, receta]);
   };
 
-  const value = {
+  const value: RecipeContextType = {
     recetas,
     favoritos,
     addToFavoritos,
@@ -72,4 +71,3 @@ export const RecipeProvider: React.FC<RecipeProviderProps> = ({ children }) => {
     </RecipeContext.Provider>
   );
 };
-
