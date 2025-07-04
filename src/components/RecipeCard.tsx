@@ -48,6 +48,7 @@ const RecipeCard: React.FC<RecipeCardProps> = ({ recipe }) => {
         >
           {isFavorito(recipe.id) ? '❤️' : '🤍'}
         </button>
+        
       </div>
       
       <div className="recipe-content">

@@ -1,18 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useRecipes } from '../hooks/useRecipes';
 import RecipeCard from '../components/RecipeCard';
+import SearchBar from '../components/SearchBar';
 
 const HomePage: React.FC = () => {
   const { recetas } = useRecipes();
+  const [searchText, setSearchText] = useState('');
+
+  // Filtrar recetas por búsqueda
+  const recetasFiltradas = recetas.filter(receta =>
+    receta.nombre.toLowerCase().includes(searchText.toLowerCase())
+  );
 
   // Obtener las recetas más valoradas (top 3)
-  const recetasDestacadas = recetas
+  const recetasDestacadas = recetasFiltradas
     .sort((a, b) => b.valoracion - a.valoracion)
     .slice(0, 3);
 
   // Obtener recetas rápidas (menos de 20 minutos)
-  const recetasRapidas = recetas
+  const recetasRapidas = recetasFiltradas
     .filter(receta => receta.tiempo <= 20)
     .slice(0, 3);
 
@@ -21,6 +28,9 @@ const HomePage: React.FC = () => {
       <section className="hero-section">
         <div className="hero-content">
           <h1 className="hero-title">🍳 Recetas para Estudiantes</h1>
+
+          <SearchBar onSearch={(text) => setSearchText(text)} />
+
           <p className="hero-subtitle">
             Deliciosas recetas fáciles, rápidas y económicas para estudiantes universitarios
           </p>

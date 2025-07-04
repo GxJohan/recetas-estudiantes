@@ -17,6 +17,33 @@ body {
   display: flex;
   flex-direction: column;
 }
+.search-bar-container {
+  margin: 1rem auto;
+  text-align: center;
+}
+
+.search-input {
+  width: 90%;
+  max-width: 400px;
+  padding: 0.75rem 1rem;
+  font-size: 1rem;
+  border: 2px solid #ddd;
+  border-radius: 50px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.search-input:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 10px rgba(0, 123, 255, 0.3);
+}
+
+.search-input::placeholder {
+  color: #aaa;
+  font-style: italic;
+}
+
 
 /* Navbar */
 .navbar {
