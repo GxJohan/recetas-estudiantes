@@ -278,5 +278,153 @@
       "U22300617": "MORENO ALVA NEIL ORLANDO - repo diferente pc3.git",
       "U22246333": "URBANO CORALES JUAN CARLOS - repo diferente PC3_Juan_Urbano"
     }
+  },
+
+  "deteccion_ia": {
+    "filosofia": "Sistema objetivo de detección basado en evidencia acumulativa con penalizaciones graduales",
+    "metodo_evaluacion": "Sistema de Puntos de Sospecha (SPS) - Evaluación manual por LLM docente",
+    
+    "indicadores_mayores": [
+      {
+        "criterio": "Comentarios exclusivamente en inglés",
+        "puntos": 4,
+        "descripcion": "Curso impartido en español, comentarios en inglés sugieren código generado"
+      },
+      {
+        "criterio": "Imports de bibliotecas no cubiertas en curso",
+        "puntos": 4,
+        "descripcion": "Uso de librerías avanzadas no enseñadas (lodash, styled-components, etc.)"
+      },
+      {
+        "criterio": "Patrones avanzados no enseñados",
+        "puntos": 4,
+        "descripcion": "React.memo, useMemo, useCallback sofisticados, optimizaciones avanzadas"
+      },
+      {
+        "criterio": "Manejo perfecto edge cases complejos",
+        "puntos": 3,
+        "descripcion": "Código que maneja casos extremos sin errores, muy sofisticado para nivel"
+      },
+      {
+        "criterio": "Funcionalidades extra más allá de requisitos",
+        "puntos": 3,
+        "descripcion": "Implementaciones que exceden significativamente lo solicitado"
+      }
+    ],
+
+    "indicadores_moderados": [
+      {
+        "criterio": "Nombres variables excesivamente descriptivos",
+        "puntos": 2,
+        "descripcion": "Variables con nombres muy largos y técnicos atípicos para estudiantes"
+      },
+      {
+        "criterio": "Comentarios muy detallados para nivel estudiante",
+        "puntos": 2,
+        "descripcion": "Documentación tipo JSDoc profesional, explicaciones muy técnicas"
+      },
+      {
+        "criterio": "Estructura código demasiado limpia",
+        "puntos": 2,
+        "descripcion": "Organización perfecta sin errores típicos de principiantes"
+      },
+      {
+        "criterio": "Tipado TypeScript perfecto",
+        "puntos": 2,
+        "descripcion": "Tipos avanzados, interfaces complejas, generics sofisticados"
+      },
+      {
+        "criterio": "Uso consistente mejores prácticas avanzadas",
+        "puntos": 2,
+        "descripcion": "Aplicación perfecta de patrones que no se enseñaron"
+      }
+    ],
+
+    "indicadores_menores": [
+      {
+        "criterio": "Estilo código perfectamente consistente",
+        "puntos": 1,
+        "descripcion": "Sin variaciones naturales esperadas en código humano"
+      },
+      {
+        "criterio": "Ausencia total errores típicos principiantes",
+        "puntos": 1,
+        "descripcion": "Código sin errores menores comunes en aprendizaje"
+      },
+      {
+        "criterio": "Terminología técnica avanzada",
+        "puntos": 1,
+        "descripcion": "Uso de términos muy técnicos en comentarios"
+      },
+      {
+        "criterio": "Formateo perfecto sin inconsistencias",
+        "puntos": 1,
+        "descripcion": "Indentación y formato automático perfecto"
+      }
+    ],
+
+    "escalas_penalizacion": [
+      {
+        "rango_sps": "0-2",
+        "nivel": "LIMPIO",
+        "penalizacion": 0,
+        "accion": "Continuar evaluación normal",
+        "color": "verde"
+      },
+      {
+        "rango_sps": "3-5", 
+        "nivel": "LEVE",
+        "penalizacion": -1,
+        "accion": "Nota en expediente + retroalimentación educativa",
+        "color": "amarillo"
+      },
+      {
+        "rango_sps": "6-8",
+        "nivel": "MEDIA", 
+        "penalizacion": "-2 a -3",
+        "accion": "Advertencia formal + reunión recomendada",
+        "color": "naranja"
+      },
+      {
+        "rango_sps": "9-12",
+        "nivel": "ALTA",
+        "penalizacion": "-4 a -5", 
+        "accion": "Investigación adicional + examen oral sugerido",
+        "color": "rojo"
+      },
+      {
+        "rango_sps": "13+",
+        "nivel": "CRÍTICA",
+        "penalizacion": "Examen oral obligatorio",
+        "accion": "Verificación presencial requerida",
+        "color": "rojo_intenso"
+      }
+    ],
+
+    "ajustes_contextuales": {
+      "estudiante_experiencia_previa": "+2 puntos tolerancia en threshold",
+      "ejercicios_basicos": "Threshold más estricto (-1 punto)",
+      "ejercicios_avanzados": "Threshold más permisivo (+1 punto)", 
+      "codigo_parcialmente_funcional": "Reducir sospecha (-1 punto)",
+      "github_actividad_previa": "Revisar historial para contexto"
+    },
+
+    "salvaguardas": [
+      "Documentar evidencia específica para cada indicador",
+      "Justificar penalización con fragmentos de código",
+      "Considerar progreso natural vs perfección artificial",
+      "Verificar consistencia con nivel del curso",
+      "Proporcionar retroalimentación educativa siempre"
+    ],
+
+    "formato_reporte_ia": {
+      "puntos_sospecha_total": "Suma de todos los indicadores detectados",
+      "indicadores_detectados": "Lista de criterios que aplicaron",
+      "evidencia_especifica": "Fragmentos de código problemáticos",
+      "nivel_riesgo": "LIMPIO|LEVE|MEDIA|ALTA|CRÍTICA",
+      "penalizacion_aplicada": "Puntos descontados del total",
+      "justificacion": "Explicación detallada de la penalización",
+      "retroalimentacion_educativa": "Consejos para evitar futuras detecciones"
+    }
   }
 }
