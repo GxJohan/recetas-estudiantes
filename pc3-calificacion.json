@@ -1,0 +1,282 @@
+{
+  "evaluacion": {
+    "nombre": "Práctica Calificada 3 (PC3)",
+    "curso": "JavaScript Avanzado",
+    "duracion": "90 minutos",
+    "puntaje_total": 20,
+    "rama_trabajo": "pc3",
+    "repositorio_base": "https://github.com/GxJohan/recetas-estudiantes",
+    "descripcion": "Evaluación de integración React con navegación, componentes, hooks y servicios"
+  },
+  
+  "instrucciones_calificacion": {
+    "proceso": [
+      "1. Identificar el repositorio del estudiante y verificar la rama 'pc3'",
+      "2. Manejar casos especiales de URLs y ramas",
+      "3. Analizar el código sin ejecutar npm install",
+      "4. Revisar cada ejercicio según los criterios específicos",
+      "5. Extraer nombre completo y apellidos del estudiante",
+      "6. Asignar puntaje según rúbrica establecida",
+      "7. Proporcionar retroalimentación específica"
+    ],
+    "manejo_urls": {
+      "casos_especiales": [
+        "URLs con 'ns' (no submission) = 0 puntos",
+        "URLs diferentes al repo base = revisar si contiene ejercicios PC3",
+        "Ramas 'pc-3' (con guión) = válida, revisar contenido",
+        "URLs con '/tree/branch' = extraer repo y rama correctamente"
+      ],
+      "validacion_rama": [
+        "Buscar rama 'pc3' primero",
+        "Si no existe, buscar 'pc-3' (con guión)",
+        "Si no existe, revisar rama 'main' por commits PC3",
+        "Reportar si no hay evidencia de trabajo PC3"
+      ]
+    },
+    "archivos_clave": [
+      "src/hooks/useRecipes.ts",
+      "src/components/SearchBar.tsx", 
+      "src/pages/StatsPage.tsx",
+      "src/services/favoritesService.ts",
+      "src/pages/HomePage.tsx",
+      "src/App.tsx",
+      "src/components/Navbar.tsx",
+      "src/components/RecipeCard.tsx"
+    ]
+  },
+
+  "ejercicios": [
+    {
+      "numero": 1,
+      "nombre": "Hook Personalizado",
+      "puntos": 5,
+      "archivo_principal": "src/hooks/useRecipes.ts",
+      "objetivo": "Modificar el hook useRecipes para agregar funcionalidad de filtrado por categoría de dificultad",
+      "requerimientos": [
+        "Agregar nuevo estado para filtro de dificultad",
+        "Implementar función filterByDifficulty",
+        "Filtrar recetas por nivel de dificultad (Fácil, Intermedio, Difícil)",
+        "Retornar la nueva función en el hook"
+      ],
+      "criterios_evaluacion": [
+        {
+          "criterio": "Estado para filtro de dificultad correctamente declarado",
+          "puntos": 1,
+          "validacion": "Verificar que existe un estado para manejar el filtro de dificultad usando useState"
+        },
+        {
+          "criterio": "Función filterByDifficulty implementada correctamente",
+          "puntos": 2,
+          "validacion": "Verificar que la función filtra las recetas usando el método filter() basado en el nivel de dificultad"
+        },
+        {
+          "criterio": "Función retornada en el hook",
+          "puntos": 1,
+          "validacion": "Verificar que filterByDifficulty se retorna en el objeto del hook"
+        },
+        {
+          "criterio": "Código limpio y tipado correctamente",
+          "puntos": 1,
+          "validacion": "Verificar tipado TypeScript correcto, nombres descriptivos y estructura clara"
+        }
+      ]
+    },
+    
+    {
+      "numero": 2,
+      "nombre": "Componente SearchBar",
+      "puntos": 5,
+      "archivo_principal": "src/components/SearchBar.tsx",
+      "archivos_modificados": ["src/pages/HomePage.tsx"],
+      "objetivo": "Crear un componente SearchBar que permita buscar recetas por nombre y utilizarlo en la página principal",
+      "requerimientos": [
+        "Crear archivo SearchBar.tsx",
+        "Implementar componente que reciba prop onSearch",
+        "Incluir input de texto y botón de búsqueda",
+        "Utilizar el componente en HomePage.tsx",
+        "Usar Bootstrap para styling"
+      ],
+      "criterios_evaluacion": [
+        {
+          "criterio": "Componente creado con props correctas",
+          "puntos": 1,
+          "validacion": "Verificar que existe el archivo y recibe prop onSearch correctamente tipada"
+        },
+        {
+          "criterio": "Input y botón implementados correctamente",
+          "puntos": 2,
+          "validacion": "Verificar que contiene input de texto y botón funcional con manejo de eventos"
+        },
+        {
+          "criterio": "Integración en HomePage funcionando",
+          "puntos": 1,
+          "validacion": "Verificar que SearchBar se importa y usa correctamente en HomePage"
+        },
+        {
+          "criterio": "Styling consistente con la aplicación",
+          "puntos": 1,
+          "validacion": "Verificar uso de Bootstrap y consistencia con diseño existente"
+        }
+      ]
+    },
+    
+    {
+      "numero": 3,
+      "nombre": "Navegación - Página de Estadísticas",
+      "puntos": 5,
+      "archivo_principal": "src/pages/StatsPage.tsx",
+      "archivos_modificados": ["src/App.tsx", "src/components/Navbar.tsx"],
+      "objetivo": "Crear una nueva página de estadísticas que muestre información resumida sobre las recetas y agregarla al sistema de navegación",
+      "requerimientos": [
+        "Crear archivo StatsPage.tsx",
+        "Mostrar total de recetas, recetas por categoría y receta más popular",
+        "Agregar ruta en App.tsx",
+        "Agregar enlace en componente Navbar",
+        "Usar RecipeContext para acceso a datos"
+      ],
+      "criterios_evaluacion": [
+        {
+          "criterio": "Página StatsPage creada y funcional",
+          "puntos": 2,
+          "validacion": "Verificar que existe el archivo y renderiza correctamente las estadísticas"
+        },
+        {
+          "criterio": "Estadísticas calculadas correctamente",
+          "puntos": 1,
+          "validacion": "Verificar cálculos de total de recetas, por categoría y receta más popular"
+        },
+        {
+          "criterio": "Ruta agregada en App.tsx",
+          "puntos": 1,
+          "validacion": "Verificar que se agregó la ruta para StatsPage en el router"
+        },
+        {
+          "criterio": "Enlace en navbar funcionando",
+          "puntos": 1,
+          "validacion": "Verificar que se agregó enlace a estadísticas en el navbar"
+        }
+      ]
+    },
+    
+    {
+      "numero": 4,
+      "nombre": "Servicio de Favoritos",
+      "puntos": 5,
+      "archivo_principal": "src/services/favoritesService.ts",
+      "archivos_modificados": ["src/contexts/RecipeContext.tsx", "src/components/RecipeCard.tsx"],
+      "objetivo": "Implementar un servicio para persistir recetas favoritas en localStorage y integrar esta funcionalidad en la aplicación",
+      "requerimientos": [
+        "Crear archivo favoritesService.ts",
+        "Implementar funciones getFavorites, addFavorite, removeFavorite",
+        "Modificar contexto para incluir manejo de favoritos",
+        "Agregar botones de favoritos en RecipeCard",
+        "Usar localStorage para persistencia"
+      ],
+      "criterios_evaluacion": [
+        {
+          "criterio": "Servicio favoritesService implementado",
+          "puntos": 2,
+          "validacion": "Verificar que existe el archivo con las tres funciones principales correctamente implementadas"
+        },
+        {
+          "criterio": "Integración en el contexto",
+          "puntos": 1,
+          "validacion": "Verificar que el contexto incluye estado y funciones para manejar favoritos"
+        },
+        {
+          "criterio": "Botones de favoritos funcionales",
+          "puntos": 1,
+          "validacion": "Verificar que RecipeCard incluye botones para agregar/remover favoritos"
+        },
+        {
+          "criterio": "Persistencia en localStorage funcionando",
+          "puntos": 1,
+          "validacion": "Verificar que se usa localStorage.setItem y localStorage.getItem correctamente"
+        }
+      ]
+    }
+  ],
+  
+  "configuracion_inicial": {
+    "requisitos": [
+      "Fork del repositorio base",
+      "Creación de rama 'pc3'",
+      "Instalación de dependencias con npm install",
+      "Verificación que la aplicación funciona en localhost:5173"
+    ],
+    "verificacion": "La aplicación debe funcionar correctamente antes de evaluar ejercicios"
+  },
+  
+  "entrega": {
+    "rama_requerida": "pc3",
+    "commit_esperado": "PC3: Implementación de hook, componente, navegación y servicios",
+    "verificaciones_finales": [
+      "Aplicación funciona sin errores",
+      "Todos los ejercicios implementados",
+      "Código limpio y bien estructurado",
+      "Cambios en rama pc3"
+    ]
+  },
+  
+  "identificacion_estudiante": {
+    "fuentes": [
+      "Lista oficial de estudiantes (PC3_JSA.csv)",
+      "README.md",
+      "package.json (author)",
+      "commits del repositorio",
+      "comentarios en el código"
+    ],
+    "formato_esperado": "Apellidos, Nombres completos",
+    "lista_oficial": "/home/gxjohan/projects/jsa/pc3/recetas-estudiantes/exams_list_link/PC3_JSA.csv"
+  },
+  
+  "retroalimentacion": {
+    "estructura": {
+      "puntos_obtenidos": "X/20",
+      "calificacion_vigesimal": "Nota sobre 20",
+      "desglose_por_ejercicio": [
+        {
+          "ejercicio": "número",
+          "puntos": "obtenidos/total",
+          "comentarios": "aspectos positivos y mejoras"
+        }
+      ],
+      "comentarios_generales": "Observaciones sobre calidad del código y buenas prácticas",
+      "recomendaciones": "Sugerencias para mejorar"
+    }
+  },
+  
+  "tecnologias_evaluadas": [
+    "React 19",
+    "TypeScript",
+    "React Router DOM",
+    "Context API",
+    "Hooks personalizados",
+    "localStorage",
+    "Bootstrap (styling)"
+  ],
+  
+  "buenas_practicas": [
+    "Tipado TypeScript correcto",
+    "Nombres descriptivos de variables y funciones",
+    "Estructura de componentes clara",
+    "Manejo adecuado de estado",
+    "Reutilización de componentes",
+    "Consistencia en styling",
+    "Manejo de errores",
+    "Código limpio y legible"
+  ],
+
+  "estudiantes_especiales": {
+    "sin_submission": ["U22226596", "U22300733"],
+    "rama_diferente": ["U22227103"],
+    "repo_diferente": ["U22300617", "U22246333"],
+    "notas": {
+      "U22226596": "PAREDES PRETEL JEFFERSON - ns (no submission)",
+      "U22300733": "TAVARA CALDERON JEANPIER ANTONIO - ns (no submission)",
+      "U22227103": "PEREZ GUANILO JESUS SEVASTIAN - rama pc-3 (con guión)",
+      "U22300617": "MORENO ALVA NEIL ORLANDO - repo diferente pc3.git",
+      "U22246333": "URBANO CORALES JUAN CARLOS - repo diferente PC3_Juan_Urbano"
+    }
+  }
+}
